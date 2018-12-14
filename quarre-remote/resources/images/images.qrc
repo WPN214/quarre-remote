@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/background">
+        <file>quarre.jpg</file>
+    </qresource>
+    <qresource prefix="/modules">
+        <file>arrow.png</file>
+        <file>hammer.png</file>
+        <file>mountain.png</file>
+        <file>palm.png</file>
+        <file>rose2.png</file>
+        <file>tree.png</file>
+        <file>xyz.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Main.qml</file>
+        <file>application/ApplicationStates.qml</file>
+        <file>application/ApplicationTransitions.qml</file>
+        <file>engine/Gesture.qml</file>
+        <file>engine/GestureManager.qml</file>
+        <file>engine/InteractionManager.qml</file>
+        <file>engine/SensorManager.qml</file>
+        <file>views/UpperView.qml</file>
+        <file>views/HeaderView.qml</file>
+        <file>views/CurrentInteractionView.qml</file>
+        <file>views/NextInteractionView.qml</file>
+        <file>modules/Default.qml</file>
+        <file>modules/Idle.qml</file>
+        <file>engine/ModuleManager.qml</file>
+    </qresource>
+</RCC>

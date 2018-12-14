@@ -1,0 +1,3 @@
+[submodule "external/WPN114-network"]
+	path = external/WPN114-network
+	url = https://github.com/WPN214/WPN114-network.git
