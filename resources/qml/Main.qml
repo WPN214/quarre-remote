@@ -3,7 +3,7 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import Quarre 1.0 as Quarre
-import WPN114.Network 1.0 as WPN114
+import WPN114.Network 1.1 as WPN114
 
 import "application"
 import "modules"
@@ -19,23 +19,32 @@ ApplicationWindow
     // --------------------------------------------------------------------------------------------------
 
     // note: reference is based on Samsung S7
-    property real refPd: 17.067
-    property real refHeight: 1848
-    property real refWidth: 1080
+    property real
+    refPd: 17.067
+
+    property real
+    refHeight: 1848
+
+    property real
+    refWidth: 1080
 
     // for the purpose of testing on macOS:
     // MacBook Pro 9.2, late 2012 (13")
     // replace width with Screen.desktopAvailableWidth
     height: Screen.height
     width:  Screen.width
-    property real currPd: Screen.pixelDensity
+
+    property real
+    currPd: Screen.pixelDensity
 
     // refer to this when calculating font sizes
-    property real ratio:        Math.min(height/refHeight, width/refWidth)
-    property real fontRatio:    Math.min(height*refPd/(currPd*refHeight), width*refPd/(currPd*refWidth))
+    property real
+    ratio: Math.min(height/refHeight, width/refWidth)
 
-    FontLoader
-    {
+    property real
+    fontRatio: Math.min(height*refPd/(currPd*refHeight), width*refPd/(currPd*refWidth))
+
+    FontLoader {
         id: font_lato_light
         source: "lato/Lato-Light.ttf"
     }
@@ -50,27 +59,27 @@ ApplicationWindow
         width:      parent.width
         focus:      true
 
-        property alias upper_view:  upper_view
-        property alias lower_view:  lower_view
+        property alias
+        upper_view: upper_view
+
+        property alias
+        lower_view: lower_view
 
         // preventing back key to quit application
-        Keys.onReleased:
-        {
+        Keys.onReleased: {
             if(event.key === Qt.Key_Back)
                 event.accepted = true;
         }
 
-        WPN114.OSCQueryServer // ------------------------------------------------- SERVER
+        WPN114.Server // ------------------------------------------------- SERVER
         {
             id: server
             name: "quarre-remote"
-            udpPort: 1234
-            tcpPort: 5678
+            singleton: true
+            udp: 1234
+            tcp: 5678
 
-            singleDevice: true
-
-            onNewConnection:
-            {
+            onNewConnection: {
                 quarre_application.state        = "IDLE";
                 upper_view.header.scene.color   = "white";
                 upper_view.header.scene.text    = "welcome";
@@ -100,10 +109,9 @@ ApplicationWindow
         {
             id: quarre_states
 
-            Component.onCompleted:
-            {
-                quarre_application.states   = quarre_states.states
-                quarre_application.state    = "DISCONNECTED"
+            Component.onCompleted: {
+                quarre_application.states = quarre_states.states
+                quarre_application.state = "DISCONNECTED"
             }
         }
 
