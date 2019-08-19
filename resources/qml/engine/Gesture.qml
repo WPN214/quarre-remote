@@ -1,30 +1,36 @@
 import QtQuick 2.0
-import WPN114.Network 1.0 as WPN114
+import WPN114.Network 1.1 as Network
 
 Item
 {
     id: root
-    property bool available:    false
-    property bool active:       false
-    property string name:       ""
 
-    property alias trigger: trigger
+    property bool
+    available: false
+
+    property bool
+    active: false
+
+    property string
+    name
+
+    property alias
+    trigger: trigger
 
     function check_availability()
     {
-        var gestures    = sensor_gesture.availableGestures;
-        var index       = gestures.indexOf("QtSensors." + name);
-
-        if ( index >= 0 ) available = true;
+        var gestures = sensor_gesture.availableGestures;
+        var index = gestures.indexOf("QtSensors." + name);
+        available = index >= 0;
     }
 
-    WPN114.Node on active { path: "/gestures/"+root.name+"/active" }
-    WPN114.Node on available { path: "/gestures/"+root.name+"/available" }
+    Network.Node on active { path: "/gestures/"+root.name+"/active" }
+    Network.Node on available { path: "/gestures/"+root.name+"/available" }
 
-    WPN114.Node
+    Network.Node
     {
         id: trigger
         path: "/gestures/"+root.name+"/trigger"
-        type: WPN114.Type.Impulse
+        type: Network.Type.Impulse
     }
 }
