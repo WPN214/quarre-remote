@@ -97,8 +97,7 @@ Rectangle
             accelerometers_available.value = connectedToBackend
     }
 
-    Network.Node
-    {
+    Network.Node {
         id: accelerometers_available;
         path: "/sensors/accelerometers/available"
         type: Network.Type.Bool
