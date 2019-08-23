@@ -1,11 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "source/system.hpp"
-#include "source/audio.hpp"
 #include <QObject>
 #include <QQmlComponent>
 
-int main(int argc, char *argv[])
+//-------------------------------------------------------------------------------------------------
+int
+main(int argc, char *argv[])
+//-------------------------------------------------------------------------------------------------
 {
 #if defined(Q_OS_WIN)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -13,8 +15,8 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<quarre::platform_hdl>   ( "Quarre", 1, 0, "System" );
-    qmlRegisterType<quarre::audio_hdl>      ( "Quarre", 1, 0, "Audio" );
+    qmlRegisterType<quarre::Platform>
+    ("Quarre", 1, 0, "Platform");
 
     QQmlApplicationEngine engine;
 
@@ -23,6 +25,5 @@ int main(int argc, char *argv[])
         return -1;
 
     QObject::connect(&engine, SIGNAL(quit()), &app, SLOT(quit()));
-
     return app.exec();
 }

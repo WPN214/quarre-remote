@@ -7,32 +7,44 @@
 #include <QtAndroidExtras/QAndroidJniObject>
 #include <QAndroidJniEnvironment>
 #endif
-#include <QTimer>
 
 namespace quarre {
-
-class platform_hdl : public QObject
+//=================================================================================================
+class Platform : public QObject
+//=================================================================================================
 {
     Q_OBJECT
 
-    public:
-    platform_hdl   ( );
-    ~platform_hdl  ( );
+    QString
+    m_host;
 
-    static platform_hdl* singleton;
-
-    public slots:
-    void vibrate ( int milliseconds )  const;
-    QString downloadPath() const;
-
-    private:
-    QString m_hostAddr;
-    quint16 m_port;
+    uint16_t
+    m_port = 0;
 
 #ifdef Q_OS_ANDROID
-    QAndroidJniObject  m_vibrator;
-    QAndroidJniObject  m_wakelock;
+    QAndroidJniObject
+    m_vibrator,
+    m_wakelock;
 #endif
+
+public:
+
+    Platform();
+
+    //---------------------------------------------------------------------------------------------
+    ~Platform() {}
+
+    //---------------------------------------------------------------------------------------------
+    static Platform*
+    singleton;
+
+    //---------------------------------------------------------------------------------------------
+    Q_SLOT void
+    vibrate(int milliseconds) const;
+
+    //---------------------------------------------------------------------------------------------
+    Q_SLOT QString
+    downloadPath() const;
 
 };
 
